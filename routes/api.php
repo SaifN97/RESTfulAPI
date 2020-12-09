@@ -28,10 +28,21 @@ Route::resource('categories.transactions', 'Category\CategoryTransactionControll
 Route::resource('categories.buyers', 'Category\CategoryBuyerController', ['only' => ['index']]);
 
 //Seller
-Route::resource('seller', 'Seller\SellerBuyerController', ['only' => ['index', 'show']]);
+Route::resource('sellers', 'Seller\SellerController', ['only' => ['index', 'show']]);
+Route::resource('sellers.buyers', 'Seller\SellerBuyerController', ['only' => ['index']]);
+Route::resource('sellers.products', 'Seller\SellerProductController', ['except' => [
+    'create',
+    'show', 'edit'
+]]);
+Route::resource('sellers.categories', 'Seller\SellerCategoryController', ['only' => ['index']]);
+Route::resource('sellers.transactions', 'Seller\SellerTransactionController', ['only' => ['index']]);
 
 //Products
 Route::resource('products', 'Product\ProductController', ['only' => ['index', 'show']]);
+Route::resource('products.buyers', 'Product\ProductBuyerController', ['only' => ['index']]);
+Route::resource('products.categories', 'Product\ProductCategoryController', ['only' => ['index', 'update', 'destroy']]);
+Route::resource('products.transactions', 'Product\ProductTransactionController', ['only' => ['index']]);
+Route::resource('products.buyers.transactions', 'Product\ProductBuyerTransactionController', ['only' => ['store']]);
 
 //Transactions
 Route::resource('transactions', 'Transaction\TransactionController', ['only' => ['index', 'show']]);
