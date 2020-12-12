@@ -21,6 +21,11 @@ class SellerProductController extends ApiController
 
         $this->middleware('transform.input:' . ProductTransformer::class)->only(['store', 'update']);
         $this->middleware('scope:manage-products');
+
+        $this->middleware('can:view,seller')->only('index');
+        $this->middleware('can:sell,seller')->only('store');
+        $this->middleware('can:edit-product,seller')->only('update');
+        $this->middleware('can:delete-product,seller')->only('destroy');
     }
 
     /**
